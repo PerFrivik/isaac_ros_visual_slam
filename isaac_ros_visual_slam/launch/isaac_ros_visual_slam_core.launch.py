@@ -105,6 +105,7 @@ class IsaacROSVisualSlamLaunchFragment(IsaacROSLaunchFragment):
                     ('/visual_slam/camera_info_2', 'rear_left/camera_info_rect'),
                     ('/visual_slam/image_3', 'rear_right/image_rect_mono'),
                     ('/visual_slam/camera_info_3', 'rear_right/camera_info_rect'),
+                    ('visual_slam/imu', 'zed_node/imu/data'),
                 ]
             )
         }
@@ -135,11 +136,12 @@ class IsaacROSVisualSlamLaunchFragment(IsaacROSLaunchFragment):
             ),
             'camera_optical_frames': DeclareLaunchArgument(
                 'camera_optical_frames',
-                default_value='[front_stereo_camera_left_optical, \
-                                front_stereo_camera_right_optical, \
-                                rear_stereo_camera_left_optical, \
-                                rear_stereo_camera_right_optical,\
-                                ]'
+                # default_value='[front_stereo_camera_left_optical, \
+                #                 front_stereo_camera_right_optical, \
+                #                 rear_stereo_camera_left_optical, \
+                #                 rear_stereo_camera_right_optical,\
+                #                 ]'
+                default_value='[zedx_left_camera_optical_frame, zedx_right_camera_optical_frame]'
             ),
             'base_frame': DeclareLaunchArgument(
                 'base_frame',
@@ -155,7 +157,7 @@ class IsaacROSVisualSlamLaunchFragment(IsaacROSLaunchFragment):
             ),
             'imu_frame': DeclareLaunchArgument(
                 'imu_frame',
-                default_value='camera_gyro_optical_frame'
+                default_value='zed_imu_link'
             ),
             'gyro_noise_density': DeclareLaunchArgument(
                 'gyro_noise_density',
