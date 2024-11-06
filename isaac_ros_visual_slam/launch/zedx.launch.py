@@ -11,10 +11,10 @@ from ament_index_python import get_package_share_directory
 def generate_launch_description():
     # Define paths to configuration files
     zed_wrapper_path = get_package_share_directory('zed_wrapper')
-    isaac_ros_zed_path = get_package_share_directory('isaac_ros_zed')
+    # isaac_ros_zed_path = get_package_share_directory('isaac_ros_zed')
     
     xacro_path = os.path.join(zed_wrapper_path, 'urdf', 'zed_descr.urdf.xacro')
-    config_common = os.path.join(isaac_ros_zed_path, 'config', 'zed.yaml')
+    config_common = os.path.join(zed_wrapper_path, 'config', 'common.yaml')
     config_camera = os.path.join(zed_wrapper_path, 'config', 'zedx.yaml')
     config_ffmpeg = os.path.join(zed_wrapper_path, 'config', 'ffmpeg.yaml')
     
@@ -46,14 +46,6 @@ def generate_launch_description():
             config_common,  # Common parameters
             config_camera,  # Camera-specific parameters
             config_ffmpeg,  # FFMPEG parameters
-            {
-                'pos_tracking.publish_tf': True,
-                'pos_tracking.publish_map_tf': True,
-                'sensors.publish_imu_tf': True,
-                'use_sim_time': False,  # Set to true if running in simulation
-                'general.camera_name': camera_model,
-                'general.camera_model': camera_model,
-            }
         ],
         arguments=[
             '--ros-args',
