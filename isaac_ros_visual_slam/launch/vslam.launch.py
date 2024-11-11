@@ -14,7 +14,7 @@ def generate_launch_description():
             name='image_format_converter_node_left',
             parameters=[
                 {'encoding_desired': 'rgb8'},
-                {'image_width': 1920},
+                {'image_width': 960},
                 {'image_height': 600}
             ],
             remappings=[
@@ -28,7 +28,7 @@ def generate_launch_description():
             name='image_format_converter_node_right',
             parameters=[
                 {'encoding_desired': 'rgb8'},
-                {'image_width': 1920},
+                {'image_width': 960},
                 {'image_height': 600}
             ],
             remappings=[
@@ -57,10 +57,12 @@ def generate_launch_description():
                 {'gyro_random_walk': 0.000019393},
                 {'accel_noise_density': 0.001862},
                 {'accel_random_walk': 0.003},
-                {'calibration_frequency': 200.0},
-                {'image_jitter_threshold_ms': 34.0},
-                {'imu_jitter_threshold_ms': 10.0},
-                {'sync_matching_threshold_ms': 5.0},
+                {'calibration_frequency': 50.0},
+                {'image_jitter_threshold_ms': 50.0},
+                {'imu_jitter_threshold_ms': 5.0},
+                {'sync_matching_threshold_ms': 10.0},
+                {'image_buffer_size': 10},
+                {'imu_buffer_size': 100},
                 {'enable_localization_n_mapping': True},
                 {'enable_planar_mode': False},
             ],
