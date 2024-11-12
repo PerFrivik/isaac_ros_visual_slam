@@ -172,6 +172,9 @@ void VisualSlamNode::VisualSlamImpl::Initialize()
     return;
   }
 
+  // system pause for 1 second to be sure that the TF tree is ready
+  std::this_thread::sleep_for(std::chrono::seconds(1));
+
   // Set the base frame.
   std::string base_frame;
   if (!node.base_frame_.empty()) {

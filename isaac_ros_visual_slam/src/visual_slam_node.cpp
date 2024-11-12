@@ -242,6 +242,8 @@ VisualSlamNode::VisualSlamNode(rclcpp::NodeOptions options)
   CUVSLAM_WarmUpGPU();
   RCLCPP_INFO(get_logger(), "Time taken by CUVSLAM_WarmUpGPU(): %f", ssw_gpu.Stop());
 
+  // system pause for 1 second to be sure that GPU is ready
+  std::this_thread::sleep_for(std::chrono::seconds(1));
 
   load_map_and_localize_server_ = rclcpp_action::create_server<ActionLoadMapAndLocalize>(
     this,
