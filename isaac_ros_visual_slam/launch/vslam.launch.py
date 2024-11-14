@@ -8,6 +8,18 @@ from launch_ros.descriptions import ComposableNode
 def generate_launch_description():
     # Define composable nodes directly here
     composable_nodes = [
+        # ComposableNode(
+        #     package="tf2_ros",
+        #     executable="static_transform_publisher",
+        #     output="screen",
+        #     arguments=["0", "0", "1", "0", "0", "0", "odom", "sw_base_link"]
+        # ),
+        ComposableNode(
+            package="tf2_ros",
+            executable="static_transform_publisher",
+            output="screen",
+            arguments=["0", "0.387", "-0.201", "0", "0", "0", "sw_base_link", "zedx_camera_center"]
+        ),
         ComposableNode(
             package='isaac_ros_image_proc',
             plugin='nvidia::isaac_ros::image_proc::ImageFormatConverterNode',
@@ -47,7 +59,7 @@ def generate_launch_description():
                 {'enable_landmarks_view': True},
                 {'enable_observations_view': False},
                 {'camera_optical_frames': ['zedx_left_camera_optical_frame', 'zedx_right_camera_optical_frame']},
-                {'base_frame': 'zedx_camera_center'},
+                {'base_frame': 'sw_base_link'},
                 {'num_cameras': 2},
                 {'min_num_images': 2},
                 {'enable_imu_fusion': True},
@@ -75,6 +87,17 @@ def generate_launch_description():
             ]
         )
     ]
+    
+    # static_tf = ComposableNode(package = "tf2_ros", 
+    #                    executable = "static_transform_publisher",
+    #                    arguments = ["0 0 0 0 0 0 odom laser"])
+    
+    # static_tf_node = ComposableNode(
+    #         package="tf2_ros",
+    #         executable="static_transform_publisher",
+    #         output="screen" ,
+    #         arguments=["0", "0", "0", "0", "0", "0", "odom", "laser"]
+    # )
 
     # Create a container for all composable nodes
     container = ComposableNodeContainer(
