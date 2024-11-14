@@ -3,6 +3,7 @@
 from launch import LaunchDescription
 from launch_ros.actions import ComposableNodeContainer
 from launch_ros.descriptions import ComposableNode
+from launch_ros.actions import Node
 
 
 def generate_launch_description():
@@ -14,12 +15,12 @@ def generate_launch_description():
         #     output="screen",
         #     arguments=["0", "0", "1", "0", "0", "0", "odom", "sw_base_link"]
         # ),
-        ComposableNode(
-            package="tf2_ros",
-            executable="static_transform_publisher",
-            output="screen",
-            arguments=["0", "0.387", "-0.201", "0", "0", "0", "sw_base_link", "zedx_camera_center"]
-        ),
+        # ComposableNode(
+        #     package="tf2_ros",
+        #     executable="static_transform_publisher",
+        #     output="screen",
+        #     arguments=["0", "0.387", "-0.201", "0", "0", "0", "sw_base_link", "zedx_camera_center"]
+        # ),
         ComposableNode(
             package='isaac_ros_image_proc',
             plugin='nvidia::isaac_ros::image_proc::ImageFormatConverterNode',
@@ -108,6 +109,14 @@ def generate_launch_description():
         composable_node_descriptions=composable_nodes,
         output='screen'
     )
+    
+    static_tf_node = Node(
+        package="tf2_ros",
+        executable="static_transform_publisher",
+        output="screen",
+        arguments=["0", "0.387", "-0.201", "0", "0", "0", "sw_base_link", "zedx_camera_center"]
+    ),
 
     # Launch description to start the container
-    return LaunchDescription([container])
+    # return LaunchDescription([container])
+    return LaunchDescription([static_tf_node, container])
