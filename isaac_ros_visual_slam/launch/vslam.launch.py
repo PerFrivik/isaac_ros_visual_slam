@@ -54,7 +54,7 @@ def generate_launch_description():
             plugin='nvidia::isaac_ros::visual_slam::VisualSlamNode',
             name='visual_slam_node',
             parameters=[
-                {'enable_image_denoising': False},
+                {'enable_image_denoising': True},
                 {'rectified_images': True},
                 {'enable_slam_visualization': True},
                 {'enable_landmarks_view': True},
@@ -73,7 +73,7 @@ def generate_launch_description():
                 {'calibration_frequency': 200.0},
                 {'image_jitter_threshold_ms': 34.0},
                 {'imu_jitter_threshold_ms': 5.0},
-                {'sync_matching_threshold_ms': 10.0},
+                {'sync_matching_threshold_ms': 25.0},
                 {'image_buffer_size': 5},
                 {'imu_buffer_size': 100},
                 {'enable_localization_n_mapping': True},
