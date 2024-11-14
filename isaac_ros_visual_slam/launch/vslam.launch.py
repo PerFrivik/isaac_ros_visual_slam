@@ -114,9 +114,12 @@ def generate_launch_description():
         package="tf2_ros",
         executable="static_transform_publisher",
         output="screen",
-        arguments=["0", "0.387", "-0.201", "0", "0", "0", "sw_base_link", "zedx_camera_center"]
-    ),
+        arguments=["0.387", "0.0", "0.201", "0", "0", "0", "sw_base_link", "zedx_camera_link"]
+    )
 
     # Launch description to start the container
     # return LaunchDescription([container])
-    return LaunchDescription([static_tf_node, container])
+    return LaunchDescription([
+        static_tf_node, 
+        container
+    ])
